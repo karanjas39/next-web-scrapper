@@ -17,16 +17,16 @@ export async function POST(req: NextRequest) {
 
     const $ = cheerio.load(html);
 
-    const element = $(selector);
+    const elements = $(selector);
 
-    if (!element.length) {
+    if (!elements.length) {
       return NextResponse.json(
         { error: "No element found for the given selector" },
         { status: 404 }
       );
     }
 
-    const content = element.text().trim();
+    const content = $(elements[0]).text().trim();
 
     return NextResponse.json({ content }, { status: 200 });
   } catch (error) {
