@@ -3,11 +3,11 @@ import * as cheerio from "cheerio";
 
 export async function POST(req: NextRequest) {
   try {
-    const { url, selector } = await req.json();
+    const { url, reviewType } = await req.json();
 
-    if (!url || !selector) {
+    if (!url || !reviewType) {
       return NextResponse.json(
-        { error: "URL and selector are required" },
+        { error: "URL and review type are required" },
         { status: 400 }
       );
     }
@@ -17,18 +17,31 @@ export async function POST(req: NextRequest) {
 
     const $ = cheerio.load(html);
 
-    const elements = $(selector);
+    const reviews = $(".detail_content_review");
 
-    if (!elements.length) {
+    if (!reviews.length) {
+      return NextResponse.json({ error: "No reviews found" }, { status: 404 });
+    }
+
+    let selectedReviews: string[] = [];
+
+    // Loop through all reviews to find all matches
+    reviews.each((i, el) => {
+      const heading = $(el).find("h4").text().trim();
+      // Check if the heading matches the requested review type
+      if (heading === reviewType) {
+        selectedReviews.push($(el).find("p").text().trim());
+      }
+    });
+
+    if (selectedReviews.length > 0) {
+      return NextResponse.json({ content: selectedReviews }, { status: 200 });
+    } else {
       return NextResponse.json(
-        { error: "No element found for the given selector" },
+        { error: `No review found for ${reviewType}` },
         { status: 404 }
       );
     }
-
-    const content = $(elements[0]).text().trim();
-
-    return NextResponse.json({ content }, { status: 200 });
   } catch (error) {
     console.error("Error:", error);
     return NextResponse.json({ error: "Failed to scrape" }, { status: 500 });
