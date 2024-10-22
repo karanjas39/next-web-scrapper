@@ -43,16 +43,16 @@ export default function Home() {
   };
 
   const handleLoadMore = () => {
-    const nextPage = page + 1; // Increment the page number
+    const nextPage = page + 1;
     setPage(nextPage);
-    fetchReviews(nextPage); // Fetch the reviews for the next page
+    fetchReviews(nextPage);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setReviews([]); // Clear previous reviews
-    setPage(1); // Reset to the first page
-    fetchReviews(1); // Fetch reviews for the first page
+    setReviews([]);
+    setPage(1);
+    fetchReviews(1);
   };
 
   return (
@@ -97,7 +97,10 @@ export default function Home() {
             <h2 className="font-semibold">Scraped Reviews:</h2>
             <ul className="mt-2">
               {reviews.map((content, index) => (
-                <li key={index} className="mt-1">
+                <li
+                  key={index}
+                  className="mt-1 p-2 rounded bg-blue-400 text-black"
+                >
                   {content}
                 </li>
               ))}

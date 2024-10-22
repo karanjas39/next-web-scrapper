@@ -23,12 +23,11 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "No reviews found" }, { status: 404 });
     }
 
-    let selectedReviews: string[] = [];
+    const selectedReviews: string[] = [];
 
-    // Loop through all reviews to find all matches
     reviews.each((i, el) => {
       const heading = $(el).find("h4").text().trim();
-      // Check if the heading matches the requested review type
+
       if (heading === reviewType) {
         selectedReviews.push($(el).find("p").text().trim());
       }
