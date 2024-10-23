@@ -82,10 +82,7 @@ export async function POST(req: NextRequest) {
     if (selectedReviews.length > 0) {
       return NextResponse.json({ content: selectedReviews }, { status: 200 });
     } else {
-      return NextResponse.json(
-        { error: `No reviews found for ${reviewType}` },
-        { status: 404 }
-      );
+      return NextResponse.json({ content: [] }, { status: 404 });
     }
   } catch (error) {
     console.error("Error:", error);
