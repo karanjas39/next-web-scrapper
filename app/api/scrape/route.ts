@@ -14,8 +14,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(
       {
         error: "Unauthorized: Invalid API Key",
-        apiKey,
-        env: process.env.API_KEY,
       },
       { status: 401 }
     );
