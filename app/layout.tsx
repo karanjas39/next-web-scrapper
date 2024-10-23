@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Reviews Scrapper",
-  description: "Ultimate review scrapper from career360",
+  title: "Reviews Scraper",
+  description: "Ultimate reviews Scraper from Career360 website.",
 };
 
 export default function RootLayout({

@@ -58,10 +58,10 @@ export default function Home() {
   return (
     <main className="min-h-screen p-8">
       <div className="max-w-2xl mx-auto">
-        <h1 className="text-2xl font-bold mb-6">College Reviews Scraper</h1>
+        <h1 className="text-3xl font-bold mb-6 text-center">Reviews Scraper</h1>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="flex gap-4">
+          <div className="flex gap-4 flex-col">
             <input
               type="text"
               value={collegeId}
@@ -83,6 +83,7 @@ export default function Home() {
             </select>
             <button
               type="submit"
+              disabled={loading}
               className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
             >
               Get Reviews
@@ -105,12 +106,15 @@ export default function Home() {
                 </li>
               ))}
             </ul>
-            <button
-              onClick={handleLoadMore}
-              className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-            >
-              Load More
-            </button>
+            {!error ? (
+              <button
+                onClick={handleLoadMore}
+                disabled={loading}
+                className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+              >
+                Load More
+              </button>
+            ) : null}
           </div>
         )}
 
