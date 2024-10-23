@@ -12,7 +12,11 @@ export async function POST(req: NextRequest) {
 
   if (!apiKey || apiKey !== process.env.API_KEY) {
     return NextResponse.json(
-      { error: "Unauthorized: Invalid API Key" },
+      {
+        error: "Unauthorized: Invalid API Key",
+        apiKey,
+        env: process.env.API_KEY,
+      },
       { status: 401 }
     );
   }
