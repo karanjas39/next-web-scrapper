@@ -1,5 +1,3 @@
-"use client";
-
 function HomePage() {
   return (
     <div className="min-h-screen flex items-center justify-center flex-col p-6">
@@ -20,14 +18,9 @@ function HomePage() {
 
         <div className="bg-gray-200 p-4 rounded-lg my-4">
           <code>
-            {"{"}
-            <br />
-            &nbsp;&nbsp;"collegeId": "12345",
-            <br />
-            &nbsp;&nbsp;"reviewType": "Academics",
-            <br />
-            &nbsp;&nbsp;"maxPages": 3<br />
-            {"}"}
+            collegeId: 12345, <br />
+            reviewType: Academics, <br />
+            maxPages: 3
           </code>
         </div>
 
@@ -35,25 +28,18 @@ function HomePage() {
 
         <div className="bg-gray-200 p-4 rounded-lg my-4">
           <code>
-            {"{"}
-            <br />
-            &nbsp;&nbsp;"content": [<br />
-            &nbsp;&nbsp;&nbsp;&nbsp;"Review 1 text...",
-            <br />
-            &nbsp;&nbsp;&nbsp;&nbsp;"Review 2 text..."
-            <br />
-            &nbsp;&nbsp;],
-            <br />
-            &nbsp;&nbsp;"status": 200
-            <br />
-            {"}"}
+            content: [ <br />
+            &nbsp;&nbsp;Review 1 text..., <br />
+            &nbsp;&nbsp;Review 2 text... <br />
+            ], <br />
+            status: 200
           </code>
         </div>
 
         <p>Make sure to include the API key in the headers as:</p>
 
         <div className="bg-gray-200 p-4 rounded-lg my-4">
-          <code>"x-api-key": "YOUR_API_KEY"</code>
+          <code>x-api-key: YOUR_API_KEY</code>
         </div>
 
         <h3 className="text-lg font-semibold mt-4">
@@ -64,8 +50,8 @@ function HomePage() {
             <strong>collegeId</strong>: The unique identifier for the college.
           </li>
           <li>
-            <strong>reviewType</strong>: The type of review you're looking for
-            (e.g., "Academics", "College Infrastructure" or "Placements").
+            <strong>reviewType</strong>: The type of review you&lsquo;re looking
+            for (e.g., Academics, College Infrastructure, or Placements).
           </li>
           <li>
             <strong>maxPages</strong>: The maximum number of pages to scrape

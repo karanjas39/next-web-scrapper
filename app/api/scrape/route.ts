@@ -57,7 +57,7 @@ export async function POST(req: NextRequest) {
       urls.map((url) =>
         fetch(url)
           .then((res) => res.text())
-          .catch((err) => null)
+          .catch(() => null)
       )
     );
 
